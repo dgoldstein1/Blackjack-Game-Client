@@ -1,5 +1,5 @@
 
-function currentUser (state= {}, action) {
+function userLogedIn (state= {}, action) {
   switch (action.type) {
     case 'USER_LOGGED':
       return action.payload
@@ -8,4 +8,4 @@ function currentUser (state= {}, action) {
   }
 }
 
-export default currentUser
+export default userLogedIn
