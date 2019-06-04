@@ -18,7 +18,6 @@ class LobbyContainer extends Component {
 
    onSubmit = (event) => {
     event.preventDefault()
-    console.log(this.state)
     this.props.loginUser(this.state)
     this.setState({
       user_name: '',
