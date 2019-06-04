@@ -12,11 +12,6 @@ function Lobby(props) {
                 onChange={props.onChange} ></input>
           <input type="submit" value="Log in" />
     </form>
-
-    <h1>Available Rooms:</h1>
-    <ul>
-      
-    </ul>
   </div>)
 }
 
