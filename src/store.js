@@ -2,12 +2,12 @@ import { applyMiddleware, compose, createStore } from 'redux'
 import reduxThunk from 'redux-thunk'
 import socketset from 'socketset'
 
-const is = x => x
-const reducer = is
+//Importing the combine reducers
+import reducer from './reducers'
 
 const devTools = window.__REDUX_DEVTOOLS_EXTENSION__
  ? window.__REDUX_DEVTOOLS_EXTENSION__()
- : is
+ : x => x
 
 //  Run the function that returns a redux middleware function
 //  and pass it the socket.io server URL:
