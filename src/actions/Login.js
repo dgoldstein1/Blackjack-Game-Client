@@ -1,27 +1,21 @@
 import request from 'superagent'
 
-export function loginUser (user) {
+const USER_LOGGED = 'USER_LOGGED'
 
-  // return {
-  //   type: 'USER_LOGGED',
-  //   payload: user
-  // }//delete the return later and uncomment the request part
+const userFromServer = (userDetails) => ({
+  type: USER_LOGGED,
+  payload: userDetails
+})
 
-  console.log('loginUser', user)
-  request
+export const loginUser = (user) => dispatch => {
+  return request
   .post('http://localhost:4000/users')//change later to heroku url
   .send({
     name: user.user_name,
   })
   .then(response => {
-    console.log('response', response.body)
-    const userDetails = response.body
-    return {
-      type: 'USER_LOGGED',
-      payload: userDetails
-    }
+    dispatch(userFromServer(response.body))
   })
-
+  .catch(console.error)
 }
-
 
