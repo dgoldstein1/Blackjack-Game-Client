@@ -1,2 +1,2 @@
-//Container for RoomDetails
+//Container for GameDetails
 
