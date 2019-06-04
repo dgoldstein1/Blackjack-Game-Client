@@ -1,13 +1,9 @@
 import request from 'superagent'
 
-export default function turnPlayed (player) {
-  console.log('palyer:', player)
+export default function turnPlayed () {
   request
-  .post('http://localhost:4000/game')
-  .send({
-    player:player
-  })
-  .then()
+  .get('http://localhost:4000/game')
+  .then(res => console.log('get response:', res))
 
   return { type: 'TURN_PLAYED' }
 }

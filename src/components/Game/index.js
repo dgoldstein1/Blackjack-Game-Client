@@ -9,13 +9,6 @@ import { joinUserToGame } from '../../actions/JoinGame'
 
 class Game extends Component {
 
-state = {
-  user:{
-    id:2,
-    name:'yossef'
-  }
-}
-
 componentDidMount() {
   const randomNumber = Math.floor(Math.random() * 100)
   this.props.joinUserToGame(randomNumber)
@@ -23,8 +16,8 @@ componentDidMount() {
 }
 
 onClick = () => {
-  console.log(this.state)
-  this.props.turnPlayed(this.state.player)
+  console.log('player played his turn')
+  this.props.turnPlayed()
 }
 
   render() {
