@@ -18,17 +18,28 @@ componentDidMount() {
 onClick = () => {
   console.log('player played his turn')
   this.props.turnPlayed()
+
 }
 
   render() {
     return (
       <div>
-        <button onClick={this.onClick}>Play your turn</button>
+          <button onClick={this.onClick}>Start Game</button>
+        
+        {this.props.clientId === this.props.currentTurn &&
+          <button onClick={this.onClick}>Play your turn</button>
+        }
       </div>
     );
   }
 }
 
-export default connect(null,{ turnPlayed,joinUserToGame })(Game);
+const mapStateToProps = state => {
+  return {  
+    clientId: state.clientId,
+    currentTurn: state.currentTurn
+  }
+}
+export default connect(mapStateToProps,{ turnPlayed,joinUserToGame })(Game);
 
 

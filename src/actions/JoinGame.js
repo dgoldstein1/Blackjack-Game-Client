@@ -8,8 +8,8 @@ const clientId = (id) => ({
 })
 
 //Send the user id to the server so it can be push to players array:
+//also dispatch the user id as clientId to redux
 export const joinUserToGame = (id) => dispatch => {
-  console.log('joinUser user:', id)
   return request
   .post('http://localhost:4000/game')//change later to heroku url
   .send({
@@ -19,22 +19,3 @@ export const joinUserToGame = (id) => dispatch => {
   .catch(console.error)
 
 }
-
-// const USER_LOGGED = 'USER_LOGGED'
-
-// const userFromServer = (userDetails) => ({
-//   type: USER_LOGGED,
-//   payload: userDetails
-// })
-
-// export const loginUser = (user) => dispatch => {
-//   return request
-//   .post('http://localhost:4000/users')//change later to heroku url
-//   .send({
-//     name: user.user_name,
-//   })
-//   .then(response => {
-//     dispatch(userFromServer(response.body))
-//   })
-//   .catch(console.error)
-// }
