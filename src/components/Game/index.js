@@ -4,13 +4,21 @@ import React, { Component } from 'react';
 import { connect } from "react-redux";
 //importing action
 import turnPlayed from '../../actions/turnPalyed'
+import { joinUserToGame } from '../../actions/JoinGame'
 
 
 class Game extends Component {
-state = {}
+
+state = {
+  user:{
+    id:2,
+    name:'yossef'
+  }
+}
 
 componentDidMount() {
-  this.setState({player: 1})
+  const randomNumber = Math.floor(Math.random() * 100)
+  this.props.joinUserToGame(randomNumber)
   
 }
 
@@ -28,6 +36,6 @@ onClick = () => {
   }
 }
 
-export default connect(null,{ turnPlayed })(Game);
+export default connect(null,{ turnPlayed,joinUserToGame })(Game);
 
 
