@@ -22,9 +22,9 @@ const enhancer = compose(middleware, devTools)
 const store = createStore(reducer, enhancer)
 
 // Dispatch a 'SOCKETSET_CONNECT' action
-const action = {
+/* const action = {
   type: 'SOCKETSET_CONNECT'
 }
-store.dispatch(action)
+store.dispatch(action) */
 
 export default store

@@ -2,26 +2,26 @@
 import request from "superagent";
 
 // Declare
-export const SET_CARDS = "SET_CARDS";
+export const SET_DECK = "SET_DECK";
 
 // API url
 const url = "https://deckofcardsapi.com/api/deck/new/draw/?count=10";
 
-// SET_CARDS
-export const setCards = cards => {
+// SET_DECK
+export const setDeck = cards => {
   return {
-    type: SET_CARDS,
-    deck: cards
+    type: SET_DECK,
+    cards: cards
   };
 };
 
 // Action creator
-export const getCards = () => dispatch => {
+export const getDeck = () => dispatch => {
   // Request
   request(url)
     .then(response => {
       // Set deck
-      dispatch(setCards(response.body.cards));
+      dispatch(setDeck(response.body.cards));
     })
     .catch(console.error);
 };

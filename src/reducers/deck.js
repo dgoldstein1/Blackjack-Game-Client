@@ -1,14 +1,14 @@
 // Import
-import { SET_CARDS } from "../actions/Getcards";
-import { REMOVE_CARD } from "../actions/Drawcards";
+import { SET_DECK } from "../actions/Getdeck";
+import { REMOVE_FROM_DECK } from "../actions/Drawcard";
 
 // Reducer
 const deck = (state = null, action) => {
   switch (action.type) {
-    case SET_CARDS:
-      return action.deck;
-    case REMOVE_CARD:
-      state.pop();
+    case SET_DECK:
+      return action.cards;
+    case REMOVE_FROM_DECK:
+      state.shift();
       return state;
     default:
       return state;

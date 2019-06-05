@@ -1,11 +1,11 @@
 // Import
-import { DRAWN_CARDS } from "../actions/Drawcards";
+import { DRAW_CARD } from "../actions/Drawcard";
 
 // Reducer
 const draws = (state = [], action) => {
   switch (action.type) {
-    case DRAWN_CARDS:
-      return [...state, action.draws];
+    case DRAW_CARD:
+      return [...state, action.card];
     default:
       return state;
   }
