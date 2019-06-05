@@ -7,6 +7,7 @@ import GamePlayers from './GamePlayers'
 //importing action
 import { joinUserToGame } from '../../actions/JoinGame'
 import { startGame } from '../../actions/startGame'
+import { stat } from 'fs';
 
 
 class GamePlayersContainer extends Component {
@@ -25,7 +26,12 @@ onStart = () => {
   render() {
     return (
       <div>
-        <GamePlayers onJoin={this.onJoin} onStart={this.onStart} players={this.props.players} />
+        <GamePlayers 
+          onJoin={this.onJoin} 
+          onStart={this.onStart} 
+          players={this.props.players} 
+          userJoinedGame={this.props.userJoinedGame}
+          />
       </div>
     );
   }
@@ -35,6 +41,7 @@ const mapStateToProps = state => {
   return {  
     user: state.userLogedIn,
     players: state.playersInGame,
+    userJoinedGame: state.userJoinedGame,
     currentTurn: state.currentTurn
   }
 }
