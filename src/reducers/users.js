@@ -8,7 +8,7 @@ export function userLogedIn (state= {}, action) {
   }
 }
 
-export function playersInGame (state= {}, action) {
+export function playersInGame (state= [], action) {
   switch (action.type) {
     case 'PLAYERS_IN_GAME':
       return action.payload

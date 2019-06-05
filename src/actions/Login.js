@@ -1,5 +1,11 @@
 import request from 'superagent'
 
+//Importing the baseUrl
+import setting from '../setting'
+
+const { baseUrl } = setting
+
+
 const USER_LOGGED = 'USER_LOGGED'
 
 const userFromServer = (userDetails) => ({
@@ -9,7 +15,7 @@ const userFromServer = (userDetails) => ({
 
 export const loginUser = (user) => dispatch => {
   return request
-  .post('http://localhost:4000/users')//change later to heroku url
+  .post(`${baseUrl}/users`)//change later to heroku url
   .send({
     name: user.user_name,
   })

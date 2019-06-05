@@ -4,6 +4,11 @@ import socketset from 'socketset'
 
 //Importing the combine reducers
 import reducer from './reducers'
+//Importing the baseUrl
+import setting from './setting'
+
+const { baseUrl } = setting
+
 
 const devTools = window.__REDUX_DEVTOOLS_EXTENSION__
  ? window.__REDUX_DEVTOOLS_EXTENSION__()
@@ -11,7 +16,7 @@ const devTools = window.__REDUX_DEVTOOLS_EXTENSION__
 
 //  Run the function that returns a redux middleware function
 //  and pass it the socket.io server URL:
-const socket = socketset('localhost:4000')//TODO: change later to the heroku url
+const socket = socketset(baseUrl)//TODO: change later to the heroku url
 
 //Pass the returned middleware to applyMiddleware and compose
 const middleware = applyMiddleware(socket, reduxThunk)
@@ -22,9 +27,9 @@ const enhancer = compose(middleware, devTools)
 const store = createStore(reducer, enhancer)
 
 // Dispatch a 'SOCKETSET_CONNECT' action
-/* const action = {
+const action = {
   type: 'SOCKETSET_CONNECT'
 }
-store.dispatch(action) */
+store.dispatch(action) 
 
 export default store

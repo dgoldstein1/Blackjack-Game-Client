@@ -1,5 +1,10 @@
 import request from 'superagent'
 
+//Importing the baseUrl
+import setting from '../setting'
+
+const { baseUrl } = setting
+
 const START_GAME = 'START_GAME'
 
 
@@ -11,7 +16,7 @@ const startingGame = () => ({
 export const startGame = () => dispatch => {
   //send a get request to route /start_game so the server can initialise the first players turn
   return request
-  .get('http://localhost:4000/start_game')
+  .get(`${baseUrl}/start_game`)
   .then(() => {
     dispatch(startingGame())
   })
