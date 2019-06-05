@@ -1,12 +1,17 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
 import turnPlayed from '../../actions/turnPalyed'
+import gameEnded from '../../actions/gameEnded'
 
 class GameTurns extends Component {
   onClick = () => {
-    console.log('player played his turn')
     this.props.turnPlayed()
   }
+
+  onEndGame = () => {
+    this.props.gameEnded()
+  }
+
 
   render() {
     return (
@@ -16,6 +21,8 @@ class GameTurns extends Component {
          {this.props.userLogedIn.id === this.props.currentTurn.id &&
           <button onClick={this.onClick}>Play your turn</button>
         }
+
+        <button onClick={this.onEndGame}>End game</button>
         
       </div>
     );
@@ -28,4 +35,4 @@ const mapStateToProps = state => {
     currentTurn: state.currentTurn
   }
 }
-export default connect(mapStateToProps,{ turnPlayed })(GameTurns);
+export default connect(mapStateToProps,{ turnPlayed, gameEnded })(GameTurns);

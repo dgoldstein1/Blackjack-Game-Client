@@ -5,6 +5,8 @@ function currentTurn (state= {}, action) {
       return action.payload
     case 'NEXT_TURN':
       return action.payload
+    case 'GAME_OVER':
+      return {}  
     default:
       return state  
   }
