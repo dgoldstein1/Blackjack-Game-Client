@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 //importing action
 import turnPlayed from '../../actions/turnPalyed'
 import { joinUserToGame } from '../../actions/JoinGame'
+import GamePlayersContainer from './GamePlayersContainer'
 
 
 class Game extends Component {
@@ -24,11 +25,12 @@ onClick = () => {
   render() {
     return (
       <div>
-          <button onClick={this.onClick}>Start Game</button>
+        <GamePlayersContainer/>
+          {/* <button onClick={this.onClick}>Start Game</button>
         
         {this.props.clientId === this.props.currentTurn &&
           <button onClick={this.onClick}>Play your turn</button>
-        }
+        } */}
       </div>
     );
   }

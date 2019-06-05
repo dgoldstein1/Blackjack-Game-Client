@@ -14,12 +14,12 @@ class App extends React.Component {
       <main>
         <Route exact path="/" render={() => (
           this.props.userLogedIn.id ? 
-          (<Redirect to="/games"/>)
+          (<Redirect to="/game"/>)
           :
           (<Lobby/>)
           )}/>
           
-          <Route exact path="/games" render={() => (
+          <Route exact path="/game" render={() => (
             !this.props.userLogedIn.id ? 
             (<Redirect to="/"/>)
             :
