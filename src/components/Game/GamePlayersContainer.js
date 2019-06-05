@@ -17,6 +17,7 @@ class GamePlayersContainer extends Component {
 
 onJoin = () => {
   console.log('player clicked join game')
+  this.props.joinUserToGame(this.props.user)
   // this.props.turnPlayed()
 
 }
@@ -30,7 +31,7 @@ onStart = () => {
   render() {
     return (
       <div>
-        <GamePlayers onJoin={this.onJoin} onStart={this.onStart} />
+        <GamePlayers onJoin={this.onJoin} onStart={this.onStart} players={this.props.players} />
       </div>
     );
   }
@@ -38,7 +39,9 @@ onStart = () => {
 
 const mapStateToProps = state => {
   return {  
-    clientId: state.clientId,
+    user: state.userLogedIn,
+    players: state.playersInGame,
+    // clientId: state.clientId,
     currentTurn: state.currentTurn
   }
 }

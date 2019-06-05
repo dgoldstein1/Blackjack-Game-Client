@@ -2,20 +2,36 @@ import request from 'superagent'
 
 const USER_JOINED = 'USER_JOINED'
 
-const clientId = (id) => ({
-  type: USER_JOINED,
-  payload: id
-})
-
-//Send the user id to the server so it can be push to players array:
+//Send the user object to the server so it can be push to players array:
 //also dispatch the user id as clientId to redux
-export const joinUserToGame = (id) => dispatch => {
+export const joinUserToGame = (user) => dispatch => {
+  console.log('joinUser argument:', user)
   return request
-  .post('http://localhost:4000/game')//change later to heroku url
+  .post('http://localhost:4000/gameplayers')//change later to heroku url
   .send({
-    player: id,
+    player: user,
   })
-  .then(() => dispatch(clientId(id)))
+  .then(() => dispatch({type: USER_JOINED}))
   .catch(console.error)
 
 }
+
+// const USER_JOINED = 'USER_JOINED'
+
+// const clientId = (id) => ({
+//   type: USER_JOINED,
+//   payload: id
+// })
+
+// //Send the user id to the server so it can be push to players array:
+// //also dispatch the user id as clientId to redux
+// export const joinUserToGame = (id) => dispatch => {
+//   return request
+//   .post('http://localhost:4000/game')//change later to heroku url
+//   .send({
+//     player: id,
+//   })
+//   .then(() => dispatch(clientId(id)))
+//   .catch(console.error)
+
+// }

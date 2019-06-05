@@ -11,14 +11,14 @@ import GamePlayersContainer from './GamePlayersContainer'
 class Game extends Component {
 
 componentDidMount() {
-  const randomNumber = Math.floor(Math.random() * 100)
-  this.props.joinUserToGame(randomNumber)
+  // const randomNumber = Math.floor(Math.random() * 100)
+  // this.props.joinUserToGame(randomNumber)
   
 }
 
 onClick = () => {
-  console.log('player played his turn')
-  this.props.turnPlayed()
+  // console.log('player played his turn')
+  // this.props.turnPlayed()
 
 }
 
