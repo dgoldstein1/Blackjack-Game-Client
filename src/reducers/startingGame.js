@@ -1,6 +1,6 @@
 function gameStarted (state= false, action) {
   switch (action.type) {
-    case 'START_GAME':
+    case 'STARTING_PLAYER':
       return action.payload
     default:
       return state  

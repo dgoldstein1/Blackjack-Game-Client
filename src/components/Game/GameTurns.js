@@ -11,10 +11,11 @@ class GameTurns extends Component {
   render() {
     return (
       <div>
-         {this.props.clientId === this.props.currentTurn &&
+        <h1>GAME</h1>
+         {this.props.userLogedIn.id === this.props.currentTurn.id &&
           <button onClick={this.onClick}>Play your turn</button>
         }
-        <h1>GAME</h1>
+        
       </div>
     );
   }
@@ -22,7 +23,7 @@ class GameTurns extends Component {
 
 const mapStateToProps = state => {
   return {  
-    clientId: state.clientId,
+    userLogedIn: state.userLogedIn,
     currentTurn: state.currentTurn
   }
 }
