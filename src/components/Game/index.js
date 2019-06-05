@@ -1,10 +1,11 @@
-//Container for GameDetails
+//Container for all Game components: GamePlayers and Blackjack
 
 import React, { Component } from 'react';
 import { connect } from "react-redux";
-//importing action
+//Importing action
 import turnPlayed from '../../actions/turnPalyed'
 import { joinUserToGame } from '../../actions/JoinGame'
+//Importing components
 import GamePlayersContainer from './GamePlayersContainer'
 import GameTurns from './GameTurns'
 

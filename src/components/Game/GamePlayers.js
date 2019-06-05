@@ -1,7 +1,9 @@
 import React from "react";
 
 function GamePlayers(props) {
+  //Deconstructing players array from props
   const { players } = props
+  //maping over players array.on each player displaying his name in <li> item
   const playersArrey =players && players.map(player => {
     return <li key={player.id}>{player.name}</li>
   })
@@ -10,7 +12,7 @@ function GamePlayers(props) {
       <h1>Players in this game:</h1>
       <ul>{!players[0] && 'There are no players in this game yet'}</ul>
       <ul>{playersArrey}</ul>
-      
+
       <h3>Want to play with them?</h3>
       <p>Click on the 'join game' buttun and see your name on the list</p>
       <p>When you have enought players click on 'start game' and start playing!</p>

@@ -1,4 +1,3 @@
-//Container for GamePlayers
 
 import React, { Component } from 'react';
 import { connect } from "react-redux";
@@ -7,20 +6,16 @@ import GamePlayers from './GamePlayers'
 //importing action
 import { joinUserToGame } from '../../actions/JoinGame'
 import { startGame } from '../../actions/startGame'
-import { stat } from 'fs';
 
 
 class GamePlayersContainer extends Component {
 
 onJoin = () => {
   this.props.joinUserToGame(this.props.user)
-
 }
 
 onStart = () => {
-  console.log('player clicked start game')
   this.props.startGame()
-
 }
 
   render() {

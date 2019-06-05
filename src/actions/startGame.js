@@ -9,11 +9,10 @@ const startingGame = () => ({
 })
 
 export const startGame = () => dispatch => {
-  console.log('starting game dispatched')
+  //send a get request to route /start_game so the server can initialise the first players turn
   return request
   .get('http://localhost:4000/start_game')
   .then(() => {
-    console.log('response from get request')
     dispatch(startingGame())
   })
   .catch(console.error)
