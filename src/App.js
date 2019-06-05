@@ -1,30 +1,35 @@
-import React from 'react';
-import './App.css';
-import { Route, Redirect } from 'react-router-dom'
-import {connect} from 'react-redux'
-import {withRouter} from 'react-router'
+import React from "react";
+import "./App.css";
+import { Route, Redirect } from "react-router-dom";
+import { connect } from "react-redux";
+import { withRouter } from "react-router";
 
 //import components:
-import Lobby from './components/Lobby';
-import Game from './components/Game';
+import Lobby from "./components/Lobby";
+import Game from "./components/Game";
+import Blackjack from "./components/Game/Blackjack";
 
 class App extends React.Component {
-  render(){
+  render() {
     return (
       <main>
-        <Route exact path="/" render={() => (
-          this.props.userLogedIn.id ? 
-          (<Redirect to="/game"/>)
-          :
-          (<Lobby/>)
-          )}/>
-          
-          <Route exact path="/game" render={() => (
-            !this.props.userLogedIn.id ? 
-            (<Redirect to="/"/>)
-            :
-            (<Game/>)
-            )}/>
+        <Route
+          exact
+          path="/"
+          render={() =>
+            this.props.userLogedIn.id ? <Redirect to="/game" /> : <Lobby />
+          }
+        />
+
+        <Route
+          exact
+          path="/game"
+          render={() =>
+            !this.props.userLogedIn.id ? <Redirect to="/" /> : <Game />
+          }
+        />
+
+        <Route exact path="/blackjack" component={Blackjack} />
       </main>
     );
   }
@@ -32,7 +37,6 @@ class App extends React.Component {
 
 const mapStateToProps = state => ({
   userLogedIn: state.userLogedIn
-})
+});
 
-
-export default withRouter(connect(mapStateToProps)(App))
+export default withRouter(connect(mapStateToProps)(App));

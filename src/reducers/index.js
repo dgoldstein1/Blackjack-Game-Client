@@ -1,15 +1,21 @@
-import { combineReducers } from 'redux'
-import { userLogedIn } from './users'
-import { playersInGame } from './users'
-import { userJoinedGame } from './users'
-import currentTurn from './turns'
-import gameStarted from './startingGame'
+// Import
+import { combineReducers } from "redux";
+import { userLogedIn } from "./users";
+import deck from "./deck";
+import draws from "./draws";
+import score from "./score";
+import { playersInGame } from "./users";
+import { userJoinedGame } from "./users";
+import currentTurn from "./turns";
+import gameStarted from "./startingGame";
 
-export default combineReducers ({
+export default combineReducers({
   userLogedIn,
   playersInGame,
   userJoinedGame,
   gameStarted,
   currentTurn,
-})
-
+  deck,
+  draws,
+  score
+});
