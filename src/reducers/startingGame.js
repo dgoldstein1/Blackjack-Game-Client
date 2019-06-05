@@ -1,15 +1,12 @@
-
-function currentTurn (state= {}, action) {
+function gameStarted (state= false, action) {
   switch (action.type) {
     case 'STARTING_PLAYER':
       return action.payload
-    case 'NEXT_TURN':
-      return action.payload
     case 'GAME_OVER':
-      return {}  
+        return false   
     default:
       return state  
   }
 }
 
-export default currentTurn
+export default gameStarted
