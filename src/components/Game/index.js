@@ -8,6 +8,7 @@ import { joinUserToGame } from '../../actions/JoinGame'
 //Importing components
 import GamePlayersContainer from './GamePlayersContainer'
 import GameTurns from './GameTurns'
+import Blackjack from './Blackjack'
 
 
 class Game extends Component {
@@ -21,7 +22,10 @@ class Game extends Component {
 
 {/* later implement GameTurns logic inside blackjack component and render him instead */}
         {this.props.gameStarted &&
-          <GameTurns/> 
+          <div>
+            <GameTurns/> 
+            <Blackjack/>
+          </div>
         }
          
       </div>

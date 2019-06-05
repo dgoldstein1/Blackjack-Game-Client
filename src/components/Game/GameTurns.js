@@ -16,7 +16,7 @@ class GameTurns extends Component {
   render() {
     return (
       <div>
-        <h1>GAME</h1>
+        
         <h3>It's {this.props.currentTurn.name}'s turn</h3>
          {this.props.userLogedIn.id === this.props.currentTurn.id &&
           <button onClick={this.onClick}>Play your turn</button>
