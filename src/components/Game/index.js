@@ -6,31 +6,23 @@ import { connect } from "react-redux";
 import turnPlayed from '../../actions/turnPalyed'
 import { joinUserToGame } from '../../actions/JoinGame'
 import GamePlayersContainer from './GamePlayersContainer'
+import GameTurns from './GameTurns'
 
 
 class Game extends Component {
 
-componentDidMount() {
-  // const randomNumber = Math.floor(Math.random() * 100)
-  // this.props.joinUserToGame(randomNumber)
-  
-}
-
-onClick = () => {
-  // console.log('player played his turn')
-  // this.props.turnPlayed()
-
-}
-
   render() {
     return (
       <div>
-        <GamePlayersContainer/>
-          {/* <button onClick={this.onClick}>Start Game</button>
-        
-        {this.props.clientId === this.props.currentTurn &&
-          <button onClick={this.onClick}>Play your turn</button>
-        } */}
+        {!this.props.gameStarted && 
+          <GamePlayersContainer/>
+        }
+
+{/* later implement GameTurns logic inside blackjack component and render him instead */}
+        {this.props.gameStarted &&
+          <GameTurns/> 
+        }
+         
       </div>
     );
   }
@@ -38,8 +30,8 @@ onClick = () => {
 
 const mapStateToProps = state => {
   return {  
-    clientId: state.clientId,
-    currentTurn: state.currentTurn
+    currentTurn: state.currentTurn,
+    gameStarted: state.gameStarted
   }
 }
 export default connect(mapStateToProps,{ turnPlayed,joinUserToGame })(Game);

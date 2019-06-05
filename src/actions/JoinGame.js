@@ -5,7 +5,6 @@ const USER_JOINED = 'USER_JOINED'
 //Send the user object to the server so it can be push to players array:
 //also dispatch the user id as clientId to redux
 export const joinUserToGame = (user) => dispatch => {
-  console.log('joinUser argument:', user)
   return request
   .post('http://localhost:4000/gameplayers')//change later to heroku url
   .send({

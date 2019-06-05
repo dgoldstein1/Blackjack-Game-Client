@@ -19,24 +19,3 @@ function GamePlayers(props) {
 }
 
 export default GamePlayers
-
-
-// const { products } = props
-// const productsArray = products && products.map(product => {
-//     return <li key={product.id}>
-//         <Link to={`/products/${product.id}`} >
-//               <p>Title: {product.title}</p>
-//               <p>Price: {product.price}</p>
-//               <br/>
-//         </Link>
-//     </li>
-// })  
-
-// return (<div>
-//     <h1>Buy and Sell</h1>
-//     <p>What would you like to buy?</p>
-//     {!props.products && 'Loading...'}
-//     <ul>
-//     {productsArray}
-//     </ul>
-//     </div>)

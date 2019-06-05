@@ -2,29 +2,23 @@
 
 import React, { Component } from 'react';
 import { connect } from "react-redux";
+import GamePlayers from './GamePlayers'
+
 //importing action
 import { joinUserToGame } from '../../actions/JoinGame'
-import GamePlayers from './GamePlayers'
+import { startGame } from '../../actions/startGame'
 
 
 class GamePlayersContainer extends Component {
 
-// componentDidMount() {
-//   const randomNumber = Math.floor(Math.random() * 100)
-//   this.props.joinUserToGame(randomNumber)
-  
-// }
-
 onJoin = () => {
-  console.log('player clicked join game')
   this.props.joinUserToGame(this.props.user)
-  // this.props.turnPlayed()
 
 }
 
 onStart = () => {
   console.log('player clicked start game')
-  // this.props.turnPlayed()
+  this.props.startGame()
 
 }
 
@@ -41,10 +35,9 @@ const mapStateToProps = state => {
   return {  
     user: state.userLogedIn,
     players: state.playersInGame,
-    // clientId: state.clientId,
     currentTurn: state.currentTurn
   }
 }
-export default connect(mapStateToProps,{ joinUserToGame })(GamePlayersContainer);
+export default connect(mapStateToProps,{ joinUserToGame, startGame })(GamePlayersContainer);
 
 

@@ -7,13 +7,14 @@ class GameTurns extends Component {
     console.log('player played his turn')
     this.props.turnPlayed()
   }
-  
+
   render() {
     return (
       <div>
          {this.props.clientId === this.props.currentTurn &&
           <button onClick={this.onClick}>Play your turn</button>
         }
+        <h1>GAME</h1>
       </div>
     );
   }
