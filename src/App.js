@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import { Route } from 'react-router-dom'
+import { Route, Redirect } from 'react-router-dom'
 import {connect} from 'react-redux'
 import {withRouter} from 'react-router'
 
@@ -8,13 +8,31 @@ import {withRouter} from 'react-router'
 import Lobby from './components/Lobby';
 import Game from './components/Game';
 
-function App() {
-  return (
-    <div className="App">
-      <Route exact path='/game'  component={Game}/>
-      <Route exact path='/'  component={Lobby}/>
-    </div>
-  );
+class App extends React.Component {
+  render(){
+    return (
+      <main>
+        <Route exact path="/" render={() => (
+          this.props.userLogedIn.id ? 
+          (<Redirect to="/games"/>)
+          :
+          (<Lobby/>)
+          )}/>
+          
+          <Route exact path="/games" render={() => (
+            !this.props.userLogedIn.id ? 
+            (<Redirect to="/"/>)
+            :
+            (<Game/>)
+            )}/>
+      </main>
+    );
+  }
 }
 
-export default withRouter(connect(null)(App))
+const mapStateToProps = state => ({
+  userLogedIn: state.userLogedIn
+})
+
+
+export default withRouter(connect(mapStateToProps)(App))
