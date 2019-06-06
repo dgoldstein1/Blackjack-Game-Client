@@ -20,10 +20,8 @@ class Game extends Component {
           <GamePlayersContainer/>
         }
 
-{/* later implement GameTurns logic inside blackjack component and render him instead */}
         {this.props.gameStarted &&
           <div>
-            {/* <GameTurns/>  */}
             <Blackjack/>
           </div>
         }

@@ -6,6 +6,9 @@ import { drawCard } from "../../../actions/Drawcard";
 import { updatePlayer } from "../../../actions/updatePlayer";
 import { getResults } from "../../../actions/getResults";
 import turnPlayed from '../../../actions/turnPalyed'
+
+import gameEnded from '../../../actions/gameEnded'
+
 import FaceDownCard from "./FaceDownCard";
 import VisibleCard from "./VisibleCard";
 
@@ -22,16 +25,19 @@ class Blackjack extends Component {
   // Draw card
   draw = () => {
     this.props.drawCard();
-    this.props.updatePlayer();
+    this.props.updatePlayer('draw');
     this.props.turnPlayed();
   };
 
   // Call game
   call = () => {
-    console.log("call the game");
+    this.props.updatePlayer('call');
+
   };
 
-    
+  onEndGame = () => {
+    this.props.gameEnded()
+  }  
 
 
   render() {
@@ -58,6 +64,8 @@ class Blackjack extends Component {
     return (
       <div>
         <h1>{userName}'s cards</h1>
+
+        <button onClick={this.onEndGame}>End game</button>
 
         <div>
           {!deck && <p>Hold on, shuffeling cards..</p>}
@@ -118,5 +126,5 @@ const mapStateToProps = state => {
 export default connect(
   mapStateToProps,
   { getDeck, drawCard, updatePlayer, turnPlayed,
-    getResults}
+    getResults,gameEnded}
 )(Blackjack);
