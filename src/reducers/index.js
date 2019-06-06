@@ -8,6 +8,7 @@ import { playersInGame } from "./users";
 import { userJoinedGame } from "./users";
 import currentTurn from "./turns";
 import gameStarted from "./startingGame";
+import gameResult from "./gameResult";
 
 export default combineReducers({
   userLogedIn,
@@ -17,5 +18,6 @@ export default combineReducers({
   currentTurn,
   deck,
   draws,
-  score
+  score,
+  gameResult
 });

@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { getDeck } from "../../../actions/Getdeck";
 import { drawCard } from "../../../actions/Drawcard";
 import { updatePlayer } from "../../../actions/updatePlayer";
+import { getResults } from "../../../actions/getResults";
 import turnPlayed from '../../../actions/turnPalyed'
 import FaceDownCard from "./FaceDownCard";
 import VisibleCard from "./VisibleCard";
@@ -14,17 +15,24 @@ class Blackjack extends Component {
     this.props.getDeck();
   }
 
+  componentDidUpdate() {
+   this.props.getResults();
+  }
+
   // Draw card
   draw = () => {
     this.props.drawCard();
-    this.props.updatePlayer()
-    this.props.turnPlayed()
+    this.props.updatePlayer();
+    this.props.turnPlayed();
   };
 
   // Call game
   call = () => {
     console.log("call the game");
   };
+
+    
+
 
   render() {
     // Get deck
@@ -102,11 +110,13 @@ const mapStateToProps = state => {
     draws: state.draws,
     score: state.score,
     userLogedIn: state.userLogedIn,
-    currentTurn: state.currentTurn
+    currentTurn: state.currentTurn,
+    playersInGame: state.playersInGame
   };
 };
 
 export default connect(
   mapStateToProps,
-  { getDeck, drawCard, updatePlayer, turnPlayed}
+  { getDeck, drawCard, updatePlayer, turnPlayed,
+    getResults}
 )(Blackjack);
