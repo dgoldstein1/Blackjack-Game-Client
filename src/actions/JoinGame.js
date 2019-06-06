@@ -13,7 +13,14 @@ export const joinUserToGame = (user) => dispatch => {
   return request
   .post(`${baseUrl}/gameplayers`)//change later to heroku url
   .send({
-    player: user,
+    player: {
+      id: user.id,
+      name: user.name,
+      draws: [],
+      score: 0,
+      call: null,
+      isWinner: null
+    },
   })
   .then(() => dispatch({type: USER_JOINED}))
   .catch(console.error)

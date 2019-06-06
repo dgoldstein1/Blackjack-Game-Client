@@ -9,21 +9,31 @@ function GamePlayers(props) {
   })
   return (
     <div>
-      <h1>Players in this game:</h1>
-      <ul>{!players[0] && 'There are no players in this game yet'}</ul>
+    
+    {!players[0] && <h1>Be the first to join the table</h1>}
+    {/* <ul>{!players[0] && 'There are no players in this game yet'}</ul> */}
+    {players[0] && 
+      <div>
+      <h1>Players already on the table:</h1>
       <ul>{playersArrey}</ul>
-
-      <h3>Want to play with them?</h3>
-      <p>Click on the 'join game' buttun and see your name on the list</p>
-      <p>When you have enought players click on 'start game' and start playing!</p>
-
+      </div>
+    }
+      <p>{props.userJoinedGame && players.length === 1 && 'Waiting for the other player.. hopefully it will not take long...'}</p>
+      
+      
       {!props.userJoinedGame && 
-      <button onClick={props.onJoin}>Join Game</button>
+        <button onClick={props.onJoin}>Join Table</button>
       }
+      {props.userJoinedGame && players.length === 2 &&
+    <div>
+        <button onClick={props.onStart}>Start blackjackin!</button>
 
-      <button onClick={props.onStart}>Start Game</button>
     </div>
-  )  
-}
-
-export default GamePlayers
+      }
+      
+      </div>
+      )  
+    }
+    
+    export default GamePlayers
+    
