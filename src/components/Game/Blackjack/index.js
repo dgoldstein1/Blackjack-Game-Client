@@ -4,8 +4,10 @@ import { connect } from "react-redux";
 import { getDeck } from "../../../actions/Getdeck";
 import { drawCard } from "../../../actions/Drawcard";
 import { updatePlayer } from "../../../actions/updatePlayer";
+import turnPlayed from '../../../actions/turnPalyed'
 import FaceDownCard from "./FaceDownCard";
 import VisibleCard from "./VisibleCard";
+
 
 class Blackjack extends Component {
   componentDidMount() {
@@ -16,6 +18,7 @@ class Blackjack extends Component {
   draw = () => {
     this.props.drawCard();
     this.props.updatePlayer()
+    this.props.turnPlayed()
   };
 
   // Call game
@@ -33,6 +36,12 @@ class Blackjack extends Component {
     // Get score
     const score = this.props.score;
 
+    //Get user name
+    const userName = this.props.userLogedIn.name
+
+    //Get current player name
+    const currentPlayer = this.props.currentTurn.name
+
     // Display draws
     const displayDraws =
       draws &&
@@ -40,14 +49,13 @@ class Blackjack extends Component {
 
     return (
       <div>
-        <h1>Blackjack</h1>
+        <h1>{userName}'s cards</h1>
 
         <div>
           {!deck && <p>Hold on, shuffeling cards..</p>}
-          {deck && draws.length === 0 && <p>Yes, draw a card cowboy..</p>}
-          {deck && draws.length > 0 && (
+          {deck && draws.length >= 0 && (
             <span>
-              Demmy, your time to shine again!
+              Current turn: {currentPlayer}
               <br /> <br />
               <b>Card amount</b>: {score}
             </span>
@@ -70,10 +78,17 @@ class Blackjack extends Component {
 
         <div>{deck && draws.length > 1 && displayDraws}</div>
 
-        {deck && (
+
+
+        {deck && this.props.userLogedIn.id === this.props.currentTurn.id && (
           <div>
             <button onClick={this.draw}>Draw</button>
             <button onClick={this.call}>Call</button>
+          </div>
+        )}
+        {deck && this.props.userLogedIn.id !== this.props.currentTurn.id && (
+          <div>
+            <p>Waiting for {currentPlayer}'s move..  </p>
           </div>
         )}
       </div>
@@ -85,11 +100,13 @@ const mapStateToProps = state => {
   return {
     deck: state.deck,
     draws: state.draws,
-    score: state.score
+    score: state.score,
+    userLogedIn: state.userLogedIn,
+    currentTurn: state.currentTurn
   };
 };
 
 export default connect(
   mapStateToProps,
-  { getDeck, drawCard, updatePlayer}
+  { getDeck, drawCard, updatePlayer, turnPlayed}
 )(Blackjack);
