@@ -25,13 +25,14 @@ class Blackjack extends Component {
   // Draw card
   draw = () => {
     this.props.drawCard();
-    this.props.updatePlayer();
+    this.props.updatePlayer('draw');
     this.props.turnPlayed();
   };
 
   // Call game
   call = () => {
-    console.log("call the game");
+    this.props.updatePlayer('call');
+
   };
 
   onEndGame = () => {
