@@ -11,19 +11,16 @@ export const updatePlayer = (action) => (dispatch, getState) => {
 
   const { draws, score, userLogedIn, playersInGame } = getState();
 
-  const allCalled = playersInGame.every(player => player.call)
   let isWinnerValue = null;
   let callValue = null;
 
+  const myIndex = playersInGame.findIndex(player => player.id === userLogedIn.id)
+  const otherPlayerIndex = (myIndex === 1) ? 0 : 1
+
   if (score > 21) {
     isWinnerValue = "lost"
-  } else if (allCalled) {
-   const myIndex = playersInGame.findIndex(player => player.id === userLogedIn.id)
-   const otherPlayerIndex = (myIndex === 1) ? 0 : 1
-
-   console.log('myIndex:', myIndex)
-   console.log('otherPlayerIndex:', otherPlayerIndex)
-
+  } else if (action === 'call' && playersInGame[otherPlayerIndex].call) {
+  
     if(playersInGame[myIndex][score] > playersInGame[otherPlayerIndex][score]){
 
       isWinnerValue = "won"
@@ -58,7 +55,8 @@ export const updatePlayer = (action) => (dispatch, getState) => {
     })
     .then(request
       .get(`${baseUrl}/game`)
-      .then(res => console.log('get request sent for call action')))
+      .then()
+    )
     .catch(console.error)
 
   }

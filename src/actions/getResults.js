@@ -38,12 +38,9 @@ export const getResults = () => (dispatch, getState) => {
         score: Loser.score
       }
     }
-
-    console.log('loser:', Loser)
-    console.log('winner:', Winner)
-    console.log('result:', result)
     dispatch(gameResult(result))
   }  
+
   // if statement in case of 2 players called
   if (findWinnerIndex >= 0) {
     const Loser = playersInGame[findLoserIndex]
@@ -61,10 +58,6 @@ export const getResults = () => (dispatch, getState) => {
         score: Loser.score
       }
     }  
-    
-    console.log('loser:', Loser)
-    console.log('winner:', Winner)
-    console.log('result:', result)
     dispatch(gameResult(result))
   }
 }
