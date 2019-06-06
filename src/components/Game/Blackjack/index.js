@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { getDeck } from "../../../actions/Getdeck";
 import { drawCard } from "../../../actions/Drawcard";
+import { updatePlayer } from "../../../actions/updatePlayer";
 import FaceDownCard from "./FaceDownCard";
 import VisibleCard from "./VisibleCard";
 
@@ -14,6 +15,7 @@ class Blackjack extends Component {
   // Draw card
   draw = () => {
     this.props.drawCard();
+    this.props.updatePlayer()
   };
 
   // Call game
@@ -89,5 +91,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { getDeck, drawCard }
+  { getDeck, drawCard, updatePlayer}
 )(Blackjack);
