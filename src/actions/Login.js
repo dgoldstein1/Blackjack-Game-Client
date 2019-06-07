@@ -6,7 +6,7 @@ import setting from '../setting'
 const { baseUrl } = setting
 
 
-const USER_LOGGED = 'USER_LOGGED'
+export const USER_LOGGED = 'USER_LOGGED'
 
 const userFromServer = (userDetails) => ({
   type: USER_LOGGED,

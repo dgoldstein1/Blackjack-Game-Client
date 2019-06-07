@@ -10,6 +10,8 @@ const deck = (state = null, action) => {
     case REMOVE_FROM_DECK:
       state.shift();
       return state;
+    case 'GAME_OVER':
+        return null      
     default:
       return state;
   }

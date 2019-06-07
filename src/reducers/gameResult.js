@@ -6,6 +6,8 @@ const gameResult = (state = {}, action) => {
   switch (action.type) {
     case GAME_RESULT:
       return action.payload;
+    case 'GAME_OVER':
+        return {}     
     default:
       return state;
   }
