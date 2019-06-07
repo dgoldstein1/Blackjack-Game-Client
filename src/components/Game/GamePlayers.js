@@ -24,11 +24,11 @@ function GamePlayers(props) {
       {!props.userJoinedGame && 
         <button onClick={props.onJoin}>Join Table</button>
       }
-      {props.userJoinedGame && players.length === 2 &&
-    <div>
+      {props.userJoinedGame && players.length === 2 && props.onStart()
+/*     <div>
         <button onClick={props.onStart}>Start blackjackin!</button>
 
-    </div>
+    </div> */
       }
       
       </div>
