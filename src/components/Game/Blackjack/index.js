@@ -132,24 +132,22 @@ class Blackjack extends Component {
         )}
 
         {other && (
-          <div>
-            <h2>{other.name}'s cards</h2>
-            <p>
-              <b>Card amount</b>: {other.score}
-            </p>
+          <div className="otherDiv">
+            <h2>{other.name}'s cards: </h2>
             {deck && other.draws.length === 0 && (
-              <div>
+              <div className="otherCards">
                 <OtherFaceDownCard card={deck[0]} />
                 <OtherFaceDownCard card={deck[0]} />
               </div>
             )}
             {other.draws.length === 1 && (
-              <div>
+              <div className="otherCards">
                 <OtherVisibleCard card={other.draws[0]} />
                 <OtherFaceDownCard card={other.draws[0]} />
               </div>
             )}
-            <div>{other.draws.length > 1 && displayOtherDraws}</div>
+            <div className="otherCards">{other.draws.length > 1 && displayOtherDraws}</div>
+            
           </div>
         )}
       </div>

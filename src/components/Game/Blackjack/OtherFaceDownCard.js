@@ -7,7 +7,7 @@ const OtherFaceDownCard = props => {
   const { image, suit, value } = props.card;
 
   // Display
-  return <img className="facedown" src={image} alt={suit + " " + value} />;
+  return <img className="otherfacedown" src={image} alt={suit + " " + value} />;
 };
 
 export default OtherFaceDownCard;

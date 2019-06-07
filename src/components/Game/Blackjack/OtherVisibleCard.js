@@ -7,7 +7,7 @@ const OtherVisibleCard = props => {
   const { image, suit, value } = props.card;
 
   // Display
-  return <img className="visible" src={image} alt={suit + " " + value} />;
+  return <img className="othervisible" src={image} alt={suit + " " + value} />;
 };
 
 export default OtherVisibleCard;

@@ -1,8 +1,10 @@
 import React from 'react';
+import "./Lobby.css";
 
 function Lobby(props) {
   return (<div>
-     <h1>Hey blackjack player, what's your name?</h1>
+     <h1>Hey blackjack player,<br/>
+           what's your name?</h1>
     <form onSubmit={props.onSubmit}>
           
           <input type="text" 
@@ -12,6 +14,8 @@ function Lobby(props) {
                 onChange={props.onChange} ></input>
           <input type="submit" value="Continue" />
     </form>
+
+
   </div>)
 }
 

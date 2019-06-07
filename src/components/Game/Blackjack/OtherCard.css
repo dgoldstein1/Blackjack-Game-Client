@@ -1,9 +1,11 @@
-.facedown {
+.otherfacedown {
   filter: invert(50%);
   margin: 20px;
+  height: 100px;
 }
 
-.visible {
+.othervisible {
   filter: none;
   margin: 20px;
+  height: 100px;
 }

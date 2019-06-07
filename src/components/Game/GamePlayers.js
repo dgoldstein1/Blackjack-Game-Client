@@ -22,7 +22,7 @@ function GamePlayers(props) {
       
       
       {!props.userJoinedGame && 
-        <button onClick={props.onJoin}>Join Table</button>
+        <button onClick={props.onJoin}>Join table</button>
       }
       {props.userJoinedGame && players.length === 2 && props.onStart()
 /*     <div>
