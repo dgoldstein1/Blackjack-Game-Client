@@ -49,6 +49,7 @@ class Blackjack extends Component {
 
   };
 
+  // End game
   onEndGame = () => {
     this.props.gameEnded()
   }  
@@ -79,7 +80,7 @@ class Blackjack extends Component {
       <div>
         <h1>{userName}'s cards</h1>
 
-        <button onClick={this.onEndGame}>End game</button>
+        {/* <button onClick={this.onEndGame}>End game</button> */}
 
         <div>
           {!deck && <p>Hold on, shuffeling cards..</p>}
