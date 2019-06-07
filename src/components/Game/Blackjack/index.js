@@ -14,6 +14,10 @@ import VisibleCard from "./VisibleCard";
 
 
 class Blackjack extends Component {
+  state = {
+    disabledButton: false
+  }
+
   componentDidMount() {
     this.props.getDeck();
   }
@@ -22,8 +26,17 @@ class Blackjack extends Component {
    this.props.getResults();
   }
 
+  disableButtons = () => {
+    this.setState({
+      disabledButton: true
+    })
+    setTimeout(this.setState({
+      disabledButton: false
+    }),2000)
+  }
   // Draw card
   draw = () => {
+    this.disableButtons()
     this.props.drawCard();
     this.props.updatePlayer('draw');
     this.props.turnPlayed();
@@ -31,6 +44,7 @@ class Blackjack extends Component {
 
   // Call game
   call = () => {
+    this.disableButtons()
     this.props.updatePlayer('call');
 
   };
@@ -98,8 +112,8 @@ class Blackjack extends Component {
 
         {deck && this.props.userLogedIn.id === this.props.currentTurn.id && (
           <div>
-            <button onClick={this.draw}>Draw</button>
-            <button onClick={this.call}>Call</button>
+            <button onClick={this.draw} disabled={this.state.disabledButton}>Draw</button>
+            <button onClick={this.call} disabled={this.state.disabledButton}>Call</button>
           </div>
         )}
         {deck && this.props.userLogedIn.id !== this.props.currentTurn.id && (
