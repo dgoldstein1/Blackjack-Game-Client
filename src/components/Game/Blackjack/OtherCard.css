@@ -1,0 +1,9 @@
+.facedown {
+  filter: invert(50%);
+  margin: 20px;
+}
+
+.visible {
+  filter: none;
+  margin: 20px;
+}

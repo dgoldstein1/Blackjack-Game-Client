@@ -4,10 +4,6 @@ import { connect } from "react-redux";
 import Lobby from './Lobby'
 import { loginUser } from '../../actions/Login'
 
-//DELETE later
-import gameEnded from '../../actions/gameEnded'
-
-
 class LobbyContainer extends Component {
   state = {
     user_name: '',
@@ -27,16 +23,10 @@ class LobbyContainer extends Component {
     })
   }
 
-  //DELETE later
-  onEndGame = () => {
-    this.props.gameEnded()
-  } 
-
   render() {
     return (
       <div>
-        {/* DELETE later */}
-        <button onClick={this.onEndGame}>End game</button>
+  
         <Lobby onChange={this.onChange} onSubmit={this.onSubmit} values={this.state}/>
 
       </div>
@@ -45,6 +35,5 @@ class LobbyContainer extends Component {
 }
 
 
-//DELETE gameEnded later
-export default connect(null, { loginUser ,gameEnded})(LobbyContainer);
+export default connect(null, { loginUser })(LobbyContainer);
 

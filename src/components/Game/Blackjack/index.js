@@ -12,6 +12,9 @@ import gameEnded from "../../../actions/gameEnded";
 import FaceDownCard from "./FaceDownCard";
 import VisibleCard from "./VisibleCard";
 
+import OtherFaceDownCard from "./OtherFaceDownCard";
+import OtherVisibleCard from "./OtherVisibleCard";
+
 class Blackjack extends Component {
   state = {
     disabledButton: false
@@ -79,7 +82,7 @@ class Blackjack extends Component {
     // Display other draws
     const displayOtherDraws =
       other.draws[0] &&
-      [...other.draws].map(card => <VisibleCard key={card.code} card={card} />);
+      [...other.draws].map(card => <OtherVisibleCard key={card.code} card={card} />);
 
     return (
       <div>
@@ -136,14 +139,14 @@ class Blackjack extends Component {
             </p>
             {deck && other.draws.length === 0 && (
               <div>
-                <FaceDownCard card={deck[0]} />
-                <FaceDownCard card={deck[0]} />
+                <OtherFaceDownCard card={deck[0]} />
+                <OtherFaceDownCard card={deck[0]} />
               </div>
             )}
             {other.draws.length === 1 && (
               <div>
-                <VisibleCard card={other.draws[0]} />
-                <FaceDownCard card={other.draws[0]} />
+                <OtherVisibleCard card={other.draws[0]} />
+                <OtherFaceDownCard card={other.draws[0]} />
               </div>
             )}
             <div>{other.draws.length > 1 && displayOtherDraws}</div>
