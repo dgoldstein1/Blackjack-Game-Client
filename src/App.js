@@ -8,6 +8,7 @@ import { withRouter } from "react-router";
 import Lobby from "./components/Lobby";
 import Game from "./components/Game";
 import Blackjack from "./components/Game/Blackjack";
+import admin from "./components/Game/ResultPages/admin";
 
 class App extends React.Component {
   render() {
@@ -30,6 +31,7 @@ class App extends React.Component {
         />
 
         <Route exact path="/blackjack" component={Blackjack} />
+        <Route exact path="/admin" component={admin} />
       </main>
     );
   }
