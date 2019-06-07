@@ -5,7 +5,7 @@ import setting from '../setting'
 
 const { baseUrl } = setting
 
-const START_GAME = 'START_GAME'
+ export const START_GAME = 'START_GAME'
 
 
 const startingGame = () => ({

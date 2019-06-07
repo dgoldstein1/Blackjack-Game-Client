@@ -1,3 +1,4 @@
+
 function gameStarted (state= false, action) {
   switch (action.type) {
     case 'STARTING_PLAYER':
