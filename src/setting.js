@@ -3,6 +3,5 @@ const setting = {
   baseUrl: 'https://boiling-forest-58829.herokuapp.com'
 }
 
-// comment
 
 export default setting
