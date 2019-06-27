@@ -5,7 +5,7 @@ import setting from '../setting'
 
 const { baseUrl } = setting
 
- export const USER_JOINED = 'USER_JOINED'
+export const USER_JOINED = 'USER_JOINED'
 
 //Send the user object to the server so it can be push to players array:
 //also dispatch the 'USER_JOINED' to redux
