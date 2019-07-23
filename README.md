@@ -21,10 +21,30 @@ Click links to view some samples in this project
 
 [Here is the backend side of the project](https://github.com/kerenKi/blackjack-game-server)
 
+## Screenshots
+
+#### Login screen
+
+![Login screen](https://github.com/kerenKi/Blackjack-Game-Client/blob/master/LogIn_screen.png)
+
+#### Waiting for another player to join
+
+![Waiting for another player](https://github.com/kerenKi/Blackjack-Game-Client/blob/master/Waiting_for_another_player.png)
+
+#### Players table
+
+![Players table](https://github.com/kerenKi/Blackjack-Game-Client/blob/master/Players_table.png)
+
+#### Winner screen
+
+![Winner screen](https://github.com/kerenKi/Blackjack-Game-Client/blob/master/Winner_message.png)
+
+
 ##
 
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
 
 ## Available Scripts
 
