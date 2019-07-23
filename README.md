@@ -1,14 +1,16 @@
 # :spades: :hearts: Blackjack Game :diamonds: :clubs:
 
-##[Check out the deployed version here!](https://blackjack-class26.netlify.com/) 
+## [Check out the deployed version here!](https://blackjack-class26.netlify.com/) 
 
 ### What this project is about
 
 This is a group project bulit during week 7 at Codaisseur academy.
+
 It’s a classic game of blackjack meant for 2 players playing by turn from different computers.
-Each player can see his own cards but also the opponent's cards.
-On every turn, the player decides whether to draw another card or call and stay with the cards already on the table.
-At the end of the game, the winner will be the player with the cards that sum the closest to 21 without going over 21.
+
+* Each player can see his own cards but also the opponent's cards.
+* On every turn, the player decides whether to draw another card or call and stay with the cards already on the table.
+* At the end of the game, the winner will be the player with the cards that sum the closest to 21 without going over 21.
 
 ### Technologies used
 
