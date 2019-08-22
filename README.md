@@ -3,7 +3,7 @@
 
 ## [Check out the deployed version here!](https://blackjack-class26.netlify.com/) 
 
-### What this project is about
+### What this project is all about
 
 This is a group project bulit during week 7 at Codaisseur academy.
 
