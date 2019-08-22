@@ -1,3 +1,4 @@
+[![Netlify Status](https://api.netlify.com/api/v1/badges/f30ae044-ab11-4e51-9307-fcf1db24fb52/deploy-status)](https://app.netlify.com/sites/guess-the-comnbo/deploys)
 # :spades: :hearts: Blackjack Game :diamonds: :clubs:
 
 ## [Check out the deployed version here!](https://blackjack-class26.netlify.com/) 
