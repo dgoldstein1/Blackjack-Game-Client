@@ -9,6 +9,7 @@ import { userJoinedGame } from "./users";
 import currentTurn from "./turns";
 import gameStarted from "./startingGame";
 import gameResult from "./gameResult";
+import game from "./game";
 
 export default combineReducers({
   userLogedIn,

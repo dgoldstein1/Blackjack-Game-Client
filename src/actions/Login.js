@@ -1,10 +1,4 @@
-import request from 'superagent'
-
-//Importing the baseUrl
-import setting from '../setting'
-
-const { baseUrl } = setting
-
+import { v4 as uuidv4 } from 'uuid';
 
 export const USER_LOGGED = 'USER_LOGGED'
 
@@ -14,14 +8,10 @@ const userFromServer = (userDetails) => ({
 })
 
 export const loginUser = (user) => dispatch => {
-  return request
-  .post(`${baseUrl}/users`)//change later to heroku url
-  .send({
-    name: user.user_name,
-  })
-  .then(response => {
-    dispatch(userFromServer(response.body))
-  })
-  .catch(console.error)
+  // log in user locally
+  dispatch(userFromServer({
+    name : user.user_name,
+    id : uuidv4(),
+  }))
 }
 
