@@ -4,7 +4,7 @@ services:
     ports:
       - 8080:8080
     volumes:
-      - ./docker/blackjack/application/properties:/home/application.properties
+      - ./docker/blackjack/application.properties:/home/application.properties
     depends_on:
       - mongodb
 
