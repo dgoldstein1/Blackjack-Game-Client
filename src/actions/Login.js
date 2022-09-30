@@ -11,7 +11,7 @@ export const loginUser = (user) => dispatch => {
   // log in user locally
   dispatch(userFromServer({
     name : user.user_name,
-    id : uuidv4(),
+    id : `player-${uuidv4()}`,
   }))
 }
 

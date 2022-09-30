@@ -5,10 +5,14 @@ import GameList from './GameList'
 import GameCreate from './GameCreate'
 import NameInput from "./NameInput"
 import {listGames, createGame} from "../../actions/game"
+import { v4 as uuidv4 } from 'uuid';
 
 class GameSelectorContainer extends Component {
 	state = {
     name : "",
+    createdGame : {
+      name : "",
+    },
 	}
 
 	onGameSelect = (event) => {
@@ -16,8 +20,18 @@ class GameSelectorContainer extends Component {
 	}
 
 	onGameCreate = (event) => {
-
+    event.preventDefault()
+    this.props.createGame(this.state.createdGame.name)
 	}
+
+  onGameUpdate = (event) => {
+    this.setState({
+      ...this.state,
+      createdGame : {
+        [event.target.name] : event.target.value,
+      }
+    })
+  }
 
   onNameChange  = (event) => {
     this.setState({
@@ -32,12 +46,12 @@ class GameSelectorContainer extends Component {
   render() {
     return (
     	<>
-    	{this.state.fetchingGames && (<div>fetchingGames...</div>)}
-      {!this.state.fetchingGames && <NameInput values={this.state} onChange={this.onNameChange}/>}
-    	{!this.state.fetchingGames && this.state.name !== "" && (
+    	{this.state.fetchedGames && (<div>fetchedGames...</div>)}
+      {!this.state.fetchedGames && <NameInput values={this.state} onChange={this.onNameChange}/>}
+    	{!this.state.fetchedGames && this.state.name !== "" && (
 	      <div>
 	        <GameList values={this.state} onGameSelect={this.onGameSelect}/>
-	        <GameCreate values={this.state} onGameCreate={this.onGameCreate}/>
+	        <GameCreate values={this.state.createdGame} onSubmit={this.onGameCreate}onChange={this.onGameUpdate}/>
 	      </div>
   		)}
   		</>
@@ -48,7 +62,7 @@ class GameSelectorContainer extends Component {
 
 const mapStateToProps = state => {
   return {
-    fetchinGames : state.fetchingGames,
+    fetchedGames : state.fetchedGames,
   }
 };
 
