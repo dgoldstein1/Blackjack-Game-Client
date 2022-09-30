@@ -1,16 +1,15 @@
 import React from 'react';
-import "./Lobby.css";
 
-function Lobby(props) {
+function NameInput(props) {
   return (<div>
      <h1>Hey blackjack player,<br/>
            what's your name?</h1>
     <form onSubmit={props.onSubmit}>
           
           <input type="text" 
-                name="user_name" 
+                name="name" 
                 required 
-                value={props.values.user_name} 
+                value={props.values.name} 
                 onChange={props.onChange} ></input>
           <input type="submit" value="Continue" />
     </form>
@@ -19,4 +18,4 @@ function Lobby(props) {
   </div>)
 }
 
-export default Lobby
+export default NameInput

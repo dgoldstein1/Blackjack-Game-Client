@@ -17,16 +17,16 @@ class App extends React.Component {
         <Route
           exact
           path="/"
-          render={() =>
-            this.props.userLogedIn.id ? <Redirect to="/game" /> : <Lobby />
-          }
+          render={() => {
+            if (!this.props.userLogedIn.id || !this.props.game) return <Lobby/>
+            return <Redirect to="/game"/>
+          }}
         />
-
         <Route
           exact
           path="/game"
           render={() =>
-            !this.props.userLogedIn.id ? <Redirect to="/" /> : <Game />
+            (!this.props.userLogedIn.id || this.props.game === undefined) ? <Redirect to="/" /> : <Game />
           }
         />
 
@@ -38,7 +38,8 @@ class App extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  userLogedIn: state.userLogedIn
+  userLogedIn: state.userLogedIn,
+  game : state.game,
 });
 
 export default withRouter(connect(mapStateToProps)(App));
