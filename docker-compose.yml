@@ -1,0 +1,15 @@
+services:
+  blackjack:
+    image: dgoldstein1/blackjack:0.0.1
+    ports:
+      - 8080:8080
+    volumes:
+      - ./docker/blackjack/application/properties:/home/application.properties
+    depends_on:
+      - mongodb
+
+  mongodb:
+    image: mongo:5.0.6
+    ports:
+      - 27017:27017
+      
