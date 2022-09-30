@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import GameList from './GameList'
 import GameCreate from './GameCreate'
 import NameInput from "./NameInput"
+import {listGames, createGame} from "../../actions/game"
 
 class GameSelectorContainer extends Component {
 	state = {
@@ -25,9 +26,7 @@ class GameSelectorContainer extends Component {
   }
 
   componentDidMount = () => {
-    return new Promise(r => {
-      setTimeout(r, 1000)
-    })
+    this.props.listGames()
   }
 
   render() {
@@ -53,5 +52,5 @@ const mapStateToProps = state => {
   }
 };
 
-export default connect(mapStateToProps)(GameSelectorContainer);
+export default connect(mapStateToProps, { listGames, createGame })(GameSelectorContainer);
 

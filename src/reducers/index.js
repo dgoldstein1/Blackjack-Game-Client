@@ -10,6 +10,7 @@ import currentTurn from "./turns";
 import gameStarted from "./startingGame";
 import gameResult from "./gameResult";
 import game from "./game";
+import fetchedGames from "./fetchedGames"
 
 export default combineReducers({
   userLogedIn,
@@ -20,5 +21,6 @@ export default combineReducers({
   deck,
   draws,
   score,
-  gameResult
+  gameResult,
+  fetchedGames
 });

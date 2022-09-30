@@ -11,7 +11,6 @@ function NameInput(props) {
                 required 
                 value={props.values.name} 
                 onChange={props.onChange} ></input>
-          <input type="submit" value="Continue" />
     </form>
 
 
