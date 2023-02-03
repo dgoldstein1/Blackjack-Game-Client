@@ -15,39 +15,42 @@ import Draw from "./ResultPages/draw";
 // import GameTurns from './GameTurns'
 import Blackjack from "./Blackjack";
 import SockJS from "sockjs-client";
+import Stomp from "stompjs"
 import {setConnection} from "../../actions/game"
+
+
+var stompClient = null
 
 class Game extends Component {
 
+
+
   componentDidMount() {
-    let setConn= c =>  {
-      this.props.setConnection(c)
-    }
+    let gameID = this.props.game.id
     var sock = new SockJS("http://localhost:8080/game")
-    sock.onopen = function() {
-      setConn({
-        success : true,
-      })
-    };
+    stompClient = Stomp.over(sock);
+    stompClient.connect({},function (frame) {
 
-    sock.onmessage = function(e) {
-      console.log('message', e.data);
-      sock.close();
-    };
+      stompClient.send("/app/action/" + gameID, {}, JSON.stringify({
+        id : "test",
+        action : "START_GAME",
+      }))
 
-    sock.onclose = function() {
-      setConn({
-        success : false,
-        error : "socket closed",
-      })
-    };
+      stompClient.subscribe('/topic/game/' + gameID, function(action){
+        action = JSON.parse(action.body)
+        console.log(action)
+      });
+    });
+
 
   }
 
   render() {
     return (
       <div>
-
+        {!this.props.connection && <h1>Connecting..</h1>}
+        {this.props.connection && this.props.connection.error && <h1>{"Error : " + this.props.connection.error}</h1>}
+        {/*{this.props.connection && this.props.connection.success && <Blackjack/>}*/}
       </div>
     );
   }
@@ -56,6 +59,7 @@ class Game extends Component {
 const mapStateToProps = state => {
   return {
     game : state.game,
+    connection : state.connection,
   };
 };
 export default connect(
