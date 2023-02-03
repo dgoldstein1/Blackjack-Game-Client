@@ -14,28 +14,35 @@ import Draw from "./ResultPages/draw";
 
 // import GameTurns from './GameTurns'
 import Blackjack from "./Blackjack";
+import SockJS from "sockjs-client";
+import {setConnection} from "../../actions/game"
 
 class Game extends Component {
-  // Win or lose?
-  winOrLose = () => {
-    const user = this.props.userLogedIn;
-    const gameresults = this.props.gameResult;
-    const winner = this.props.gameResult.winner;
-    const loser = this.props.gameResult.loser;
 
-    if (winner.score === loser.score) {
-      return <Draw user={user} gameresults={gameresults} onClick={this.onEndGame} />;
-    } else if (winner.id === user.id) {
-      return <Win user={user} gameresults={gameresults} onClick={this.onEndGame} />;
-    } else {
-      return <Lose user={user} gameresults={gameresults} onClick={this.onEndGame} />;
+  componentDidMount() {
+    let setConn= c =>  {
+      this.props.setConnection(c)
     }
-  };
+    var sock = new SockJS("http://localhost:8080/game")
+    sock.onopen = function() {
+      setConn({
+        success : true,
+      })
+    };
 
-  // End game
-  onEndGame = () => {
-    this.props.gameEnded()
-  }  
+    sock.onmessage = function(e) {
+      console.log('message', e.data);
+      sock.close();
+    };
+
+    sock.onclose = function() {
+      setConn({
+        success : false,
+        error : "socket closed",
+      })
+    };
+
+  }
 
   render() {
     return (
@@ -48,13 +55,10 @@ class Game extends Component {
 
 const mapStateToProps = state => {
   return {
-    currentTurn: state.currentTurn,
-    gameStarted: state.gameStarted,
-    gameResult: state.gameResult,
-    userLogedIn: state.userLogedIn
+    game : state.game,
   };
 };
 export default connect(
   mapStateToProps,
-  { turnPlayed, joinUserToGame, gameEnded }
+  { setConnection }
 )(Game);

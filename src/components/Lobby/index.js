@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import GameList from './GameList'
 import GameCreate from './GameCreate'
 import NameInput from "./NameInput"
-import {listGames, createGame} from "../../actions/game"
+import {listGames, createGame, setGame} from "../../actions/game"
 import { v4 as uuidv4 } from 'uuid';
 
 import {Client} from "@stomp/stompjs"
@@ -20,21 +20,7 @@ class GameSelectorContainer extends Component {
 	}
 
 	onGameSelect = (game) => {
-    var sock = new SockJS("http://localhost:8080/game")
-    sock.onopen = function() {
-      console.log('open');
-      // sock.send('test');
-    };
-
-    sock.onmessage = function(e) {
-      console.log('message', e.data);
-      sock.close();
-    };
-
-    sock.onclose = function() {
-      console.log('close');
-    };
-
+    this.props.setGame(game)
   }
 
 	onGameCreate = (event) => {
@@ -96,5 +82,5 @@ const mapStateToProps = state => {
   }
 };
 
-export default connect(mapStateToProps, { listGames, createGame })(GameSelectorContainer);
+export default connect(mapStateToProps, { listGames, createGame, setGame })(GameSelectorContainer);
 

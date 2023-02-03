@@ -17,7 +17,7 @@ class App extends React.Component {
           exact
           path="/"
           render={() => {
-            if (!this.props.game || this.props.game.id) return <Lobby/>
+            if (!this.props.game || !this.props.game.id) return <Lobby/>
             return <Redirect to="/game"/>
           }}
         />
