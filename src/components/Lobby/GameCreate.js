@@ -2,7 +2,7 @@ import React from 'react';
 
 function GameCreate(props) {
   return (<div>
-     <h1>OR create a new game</h1>
+     <h1>Create New Game</h1>
     <form onSubmit={props.onSubmit}>
           <label htmlFor="name">Game Name :</label>
           <input type="text" 

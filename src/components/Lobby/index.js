@@ -9,19 +9,23 @@ import { v4 as uuidv4 } from 'uuid';
 
 class GameSelectorContainer extends Component {
 	state = {
-    name : "",
+    nameSelected : true,
+    name : "david",
     createdGame : {
       name : "",
     },
 	}
 
-	onGameSelect = (event) => {
-
+	onGameSelect = (gameID) => {
+    console.log(gameID)
 	}
 
 	onGameCreate = (event) => {
     event.preventDefault()
     this.props.createGame(this.state.createdGame.name)
+    setTimeout(() => {
+      this.props.listGames()
+    }, 300)
 	}
 
   onGameUpdate = (event) => {
@@ -39,6 +43,14 @@ class GameSelectorContainer extends Component {
     })
   }
 
+  onNameSubmit = (e) => {
+    e.preventDefault()
+    console.log("on name submit")
+    this.setState({
+      nameSelected : true,
+    })
+  }
+
   componentDidMount = () => {
     this.props.listGames()
   }
@@ -46,11 +58,11 @@ class GameSelectorContainer extends Component {
   render() {
     return (
     	<>
-    	{this.state.fetchedGames && (<div>fetchedGames...</div>)}
-      {!this.state.fetchedGames && <NameInput values={this.state} onChange={this.onNameChange}/>}
-    	{!this.state.fetchedGames && this.state.name !== "" && (
+      {!this.state.nameSelected && <NameInput values={this.state} onSubmit={this.onNameSubmit}onChange={this.onNameChange}/>}
+    	{!this.props.fetchedGames && this.state.nameSelected && (<div>fetchedGames...</div>)}
+    	{this.props.fetchedGames && this.state.nameSelected && (
 	      <div>
-	        <GameList values={this.state} onGameSelect={this.onGameSelect}/>
+	        <GameList gameList={this.props.fetchedGames} onGameSelect={this.onGameSelect}/>}
 	        <GameCreate values={this.state.createdGame} onSubmit={this.onGameCreate}onChange={this.onGameUpdate}/>
 	      </div>
   		)}

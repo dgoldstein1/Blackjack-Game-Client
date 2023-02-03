@@ -3,8 +3,8 @@ services:
     image: dgoldstein1/blackjack:0.0.2
     ports:
       - 8080:8080
-    volumes:
-      - ./docker/blackjack/application.properties:/home/application.properties
+    environment:
+      - MONGO_HOST=mongodb
     depends_on:
       - mongodb
 
