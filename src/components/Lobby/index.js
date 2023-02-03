@@ -10,14 +10,14 @@ import { v4 as uuidv4 } from 'uuid';
 class GameSelectorContainer extends Component {
 	state = {
     nameSelected : true,
-    name : "david",
+    name : "dsauce",
     createdGame : {
       name : "",
     },
 	}
 
-	onGameSelect = (gameID) => {
-    console.log(gameID)
+	onGameSelect = (game) => {
+    console.log(game)
 	}
 
 	onGameCreate = (event) => {
@@ -59,10 +59,11 @@ class GameSelectorContainer extends Component {
     return (
     	<>
       {!this.state.nameSelected && <NameInput values={this.state} onSubmit={this.onNameSubmit}onChange={this.onNameChange}/>}
-    	{!this.props.fetchedGames && this.state.nameSelected && (<div>fetchedGames...</div>)}
+    	{!this.props.fetchedGames && this.state.nameSelected && (<div>fetching games...</div>)}
     	{this.props.fetchedGames && this.state.nameSelected && (
 	      <div>
-	        <GameList gameList={this.props.fetchedGames} onGameSelect={this.onGameSelect}/>}
+	        <GameList gameList={this.props.fetchedGames} onGameSelect={this.onGameSelect}/>
+          <br/>
 	        <GameCreate values={this.state.createdGame} onSubmit={this.onGameCreate}onChange={this.onGameUpdate}/>
 	      </div>
   		)}

@@ -4,7 +4,6 @@ import { Route, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import { withRouter } from "react-router";
 
-//import components:
 import Lobby from "./components/Lobby";
 import Game from "./components/Game";
 import Blackjack from "./components/Game/Blackjack";
