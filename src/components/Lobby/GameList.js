@@ -105,24 +105,32 @@ export const Center = styled.div`
   ${props => (props.H ? CenterH : "")}
 `;
 
+const JoinButton = styled.button`
+  cursor: pointer
+`
+
 
 function GameList(props) {
+
   let data = props.gameList.map(g => ({
     Name : g.name,
     Status : g.status,
     Pot : g.pot,
     Players : g.players ? g.players.length : 0,
-    Join : (<button onClick={() => props.onGameSelect(g)}>Join</button>)
+    Join : (<JoinButton onClick={() => props.onGameSelect(g)}>Join</JoinButton>)
   }))
 
-
-  console.log(data)
   return (
     <div className="gamelist">
-      <h1>Ongoing Games</h1>
-      <Center V H>
+      {data.length > 0 && (
+        <div>
+        <h1>Ongoing Games</h1>
+        <Center V H>
         <Table data={data} onGameSelect={props.onGameSelect} />
-      </Center>
+        </Center>
+        </div>
+        )}
+      {data.length === 0 && <div>No Games Found</div>}
     </div>
   )
 }

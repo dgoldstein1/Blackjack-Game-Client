@@ -7,6 +7,9 @@ import NameInput from "./NameInput"
 import {listGames, createGame} from "../../actions/game"
 import { v4 as uuidv4 } from 'uuid';
 
+import {Client} from "@stomp/stompjs"
+import SockJS from "sockjs-client"
+
 class GameSelectorContainer extends Component {
 	state = {
     nameSelected : true,
@@ -17,8 +20,22 @@ class GameSelectorContainer extends Component {
 	}
 
 	onGameSelect = (game) => {
-    console.log(game)
-	}
+    var sock = new SockJS("http://localhost:8080/game")
+    sock.onopen = function() {
+      console.log('open');
+      // sock.send('test');
+    };
+
+    sock.onmessage = function(e) {
+      console.log('message', e.data);
+      sock.close();
+    };
+
+    sock.onclose = function() {
+      console.log('close');
+    };
+
+  }
 
 	onGameCreate = (event) => {
     event.preventDefault()
@@ -62,10 +79,10 @@ class GameSelectorContainer extends Component {
     	{!this.props.fetchedGames && this.state.nameSelected && (<div>fetching games...</div>)}
     	{this.props.fetchedGames && this.state.nameSelected && (
 	      <div>
-	        <GameList gameList={this.props.fetchedGames} onGameSelect={this.onGameSelect}/>
+          <GameCreate values={this.state.createdGame} onSubmit={this.onGameCreate}onChange={this.onGameUpdate}/>
           <br/>
-	        <GameCreate values={this.state.createdGame} onSubmit={this.onGameCreate}onChange={this.onGameUpdate}/>
-	      </div>
+          <GameList gameList={this.props.fetchedGames} onGameSelect={this.onGameSelect}/>
+        </div>
   		)}
   		</>
     )

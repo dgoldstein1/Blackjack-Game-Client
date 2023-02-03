@@ -17,7 +17,7 @@ class App extends React.Component {
           exact
           path="/"
           render={() => {
-            if (!this.props.userLogedIn.id || !this.props.game) return <Lobby/>
+            if (!this.props.game || this.props.game.id) return <Lobby/>
             return <Redirect to="/game"/>
           }}
         />
@@ -25,10 +25,9 @@ class App extends React.Component {
           exact
           path="/game"
           render={() =>
-            (!this.props.userLogedIn.id || this.props.game === undefined) ? <Redirect to="/" /> : <Game />
+            (!this.props.game || !this.props.game.id) ? <Redirect to="/" /> : <Game />
           }
         />
-
         <Route exact path="/blackjack" component={Blackjack} />
         <Route exact path="/admin" component={admin} />
       </main>

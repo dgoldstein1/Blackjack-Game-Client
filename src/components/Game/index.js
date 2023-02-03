@@ -40,17 +40,7 @@ class Game extends Component {
   render() {
     return (
       <div>
-        {!this.props.gameStarted && <GamePlayersContainer />}
 
-        {this.props.gameStarted && !this.props.gameResult && (
-          <div>
-            <Blackjack />
-          </div>
-        )}
-
-        {this.props.gameStarted && this.props.gameResult && (
-          <div>{this.winOrLose()}</div>
-        )}
       </div>
     );
   }
