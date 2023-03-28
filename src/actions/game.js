@@ -43,6 +43,9 @@ export const joinGame = (game, playerName) => dispatch => {
   .then(res => {
     dispatch(setGame(game))
   })
+  .catch(e => {
+    alert(e)
+  })
 }
 
 export const SET_GAME = "SET_GAME"

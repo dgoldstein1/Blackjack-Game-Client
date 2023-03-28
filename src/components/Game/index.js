@@ -16,7 +16,7 @@ import Draw from "./ResultPages/draw";
 import Blackjack from "./Blackjack";
 import SockJS from "sockjs-client";
 import Stomp from "stompjs"
-import {setConnection} from "../../actions/game"
+import {setConnection, setGame} from "../../actions/game"
 
 
 var stompClient = null
@@ -29,7 +29,15 @@ class Game extends Component {
     let gameID = this.props.game.id
     var sock = new SockJS("http://localhost:8080/game")
     stompClient = Stomp.over(sock);
+
+    var setConnect  = this.props.setConnection
+    var setGame = this.props.setGame
+
     stompClient.connect({},function (frame) {
+
+      setConnect({
+        success : true,
+      })
 
       stompClient.send("/app/action/" + gameID, {}, JSON.stringify({
         id : "test",
@@ -38,7 +46,7 @@ class Game extends Component {
 
       stompClient.subscribe('/topic/game/' + gameID, function(action){
         action = JSON.parse(action.body)
-        console.log(action)
+        setGame(action)
       });
     });
 
@@ -64,5 +72,5 @@ const mapStateToProps = state => {
 };
 export default connect(
   mapStateToProps,
-  { setConnection }
+  { setConnection, setGame }
 )(Game);

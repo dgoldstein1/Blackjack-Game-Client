@@ -56,7 +56,6 @@ class GameSelectorContainer extends Component {
   }
 
   render() {
-    console.log(this.props.player.name)
     return (
     	<>
       {!this.props.player.name && <NameInput values={this.state} onSubmit={this.onNameSubmit}onChange={this.onNameChange}/>}
