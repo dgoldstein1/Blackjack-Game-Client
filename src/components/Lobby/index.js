@@ -4,7 +4,8 @@ import { connect } from "react-redux";
 import GameList from './GameList'
 import GameCreate from './GameCreate'
 import NameInput from "./NameInput"
-import {listGames, createGame, setGame} from "../../actions/game"
+import {listGames, createGame, joinGame} from "../../actions/game"
+import { setPlayerInfo } from "../../actions/player"
 import { v4 as uuidv4 } from 'uuid';
 
 import {Client} from "@stomp/stompjs"
@@ -12,15 +13,14 @@ import SockJS from "sockjs-client"
 
 class GameSelectorContainer extends Component {
 	state = {
-    nameSelected : true,
-    name : "dsauce",
+    name : this.props.player.name,
     createdGame : {
       name : "",
     },
 	}
 
-	onGameSelect = (game) => {
-    this.props.setGame(game)
+	onJoinGame = (game) => {
+    this.props.joinGame(game, this.state.name)
   }
 
 	onGameCreate = (event) => {
@@ -48,10 +48,7 @@ class GameSelectorContainer extends Component {
 
   onNameSubmit = (e) => {
     e.preventDefault()
-    console.log("on name submit")
-    this.setState({
-      nameSelected : true,
-    })
+    this.props.setPlayerInfo(uuidv4(), this.state.name)
   }
 
   componentDidMount = () => {
@@ -59,15 +56,16 @@ class GameSelectorContainer extends Component {
   }
 
   render() {
+    console.log(this.props.player.name)
     return (
     	<>
-      {!this.state.nameSelected && <NameInput values={this.state} onSubmit={this.onNameSubmit}onChange={this.onNameChange}/>}
-    	{!this.props.fetchedGames && this.state.nameSelected && (<div>fetching games...</div>)}
-    	{this.props.fetchedGames && this.state.nameSelected && (
+      {!this.props.player.name && <NameInput values={this.state} onSubmit={this.onNameSubmit}onChange={this.onNameChange}/>}
+    	{!this.props.fetchedGames && this.props.player.name && (<div>fetching games...</div>)}
+    	{this.props.fetchedGames && this.props.player.name && (
 	      <div>
           <GameCreate values={this.state.createdGame} onSubmit={this.onGameCreate}onChange={this.onGameUpdate}/>
           <br/>
-          <GameList gameList={this.props.fetchedGames} onGameSelect={this.onGameSelect}/>
+          <GameList gameList={this.props.fetchedGames} onJoinGame={this.onJoinGame}/>
         </div>
   		)}
   		</>
@@ -79,8 +77,9 @@ class GameSelectorContainer extends Component {
 const mapStateToProps = state => {
   return {
     fetchedGames : state.fetchedGames,
+    player : state.player,
   }
 };
 
-export default connect(mapStateToProps, { listGames, createGame, setGame })(GameSelectorContainer);
+export default connect(mapStateToProps, { listGames, createGame, joinGame, setPlayerInfo })(GameSelectorContainer);
 

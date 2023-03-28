@@ -12,8 +12,10 @@ import gameResult from "./gameResult";
 import game from "./game";
 import fetchedGames from "./fetchedGames"
 import connection from "./connection"
+import player from "./player"
 
 export default combineReducers({
+  player,
   connection,
   game,
   userLogedIn,

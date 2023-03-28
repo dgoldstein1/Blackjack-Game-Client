@@ -117,7 +117,7 @@ function GameList(props) {
     Status : g.status,
     Pot : g.pot,
     Players : g.players ? g.players.length : 0,
-    Join : (<JoinButton onClick={() => props.onGameSelect(g)}>Join</JoinButton>)
+    Join : (<JoinButton onClick={() => props.onJoinGame(g)}>Join</JoinButton>)
   }))
 
   return (
@@ -126,7 +126,7 @@ function GameList(props) {
         <div>
         <h1>Ongoing Games</h1>
         <Center V H>
-        <Table data={data} onGameSelect={props.onGameSelect} />
+        <Table data={data} onJoinGame={props.onJoinGame} />
         </Center>
         </div>
         )}

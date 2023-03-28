@@ -1,6 +1,6 @@
 services:
   blackjack:
-    image: dgoldstein1/blackjack:0.0.2
+    image: dgoldstein1/blackjack:0.0.3
     ports:
       - 8080:8080
     environment:

@@ -22,13 +22,26 @@ export const createGame = (gameName) => dispatch => {
   return request
   .post(`${baseUrl}/rest/game`, {
     name : gameName,
-    id : `game-${uuidv4()}`
+    id : uuidv4(),
   })
   .then(res => {
     dispatch({
       type : GAME_CREATED,
       games : res.body,
     })
+  })
+}
+
+
+export const JOIN_GAME = "JOIN_GAME"
+export const joinGame = (game, playerName) => dispatch => {
+  return request
+  .post(`${baseUrl}/rest/game/${game.id}/join`, {
+    name : playerName,
+    playerId : uuidv4(),
+  })
+  .then(res => {
+    dispatch(setGame(game))
   })
 }
 

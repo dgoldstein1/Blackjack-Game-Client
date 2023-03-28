@@ -8,8 +8,15 @@ import Lobby from "./components/Lobby";
 import Game from "./components/Game";
 import Blackjack from "./components/Game/Blackjack";
 import admin from "./components/Game/ResultPages/admin";
+import { initPlayerInfoFromCookie } from "./actions/player"
 
 class App extends React.Component {
+
+  componentDidMount = () => {
+    this.props.initPlayerInfoFromCookie()
+  }
+
+
   render() {
     return (
       <main>
@@ -40,4 +47,4 @@ const mapStateToProps = state => ({
   game : state.game,
 });
 
-export default withRouter(connect(mapStateToProps)(App));
+export default withRouter(connect(mapStateToProps, {initPlayerInfoFromCookie})(App));
